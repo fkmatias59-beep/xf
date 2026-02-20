@@ -3,400 +3,381 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Xang Fender Beats</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;500;700&family=Cinzel:wght@700&display=swap" rel="stylesheet">
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Xang Fender | Beat Club</title>
     <style>
+        /* Estilos base inspirados en el vintage moderno / brutalismo limpio */
+        :root {
+            --bg-color: #f4f1eb; /* Tono crema vintage */
+            --text-color: #111111;
+            --accent-color: #d35400; /* Naranja quemado */
+            --border-color: #111111;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
-            font-family: 'Oswald', sans-serif;
-            background: #0a0a0a;
-            color: #e0e0e0;
-            line-height: 1.4;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            overflow-x: hidden;
         }
-        
-        h1, h2, h3 {
-            font-family: 'Bebas Neue', sans-serif;
-            letter-spacing: 0.08em;
+
+        a {
+            text-decoration: none;
+            color: inherit;
         }
-        
-        /* Header vintage industrial */
+
+        /* Navegación */
         header {
-            background: url('https://images.unsplash.com/photo-1511671782779-cb56e135bd67?w=1600&q=80') center/cover no-repeat;
-            /* Cambia por tu propia imagen: estudio retro, vinilos viejos, luces tenues de club */
-            padding: 32px 48px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            border-bottom: 2px solid var(--border-color);
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 0.9rem;
             position: sticky;
             top: 0;
-            z-index: 50;
-            border-bottom: 1px solid #333;
-            box-shadow: 0 6px 25px rgba(0,0,0,0.8);
+            background-color: var(--bg-color);
+            z-index: 100;
         }
-        
-        header .overlay {
-            position: absolute;
-            inset: 0;
-            background: rgba(10,10,10,0.82);
-            z-index: 0;
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
         }
-        
-        header > * {
-            position: relative;
-            z-index: 1;
+
+        .nav-links a:hover {
+            color: var(--accent-color);
         }
-        
-        header h1 {
-            font-size: 3.5rem;
-            color: #d4af37; /* dorado vintage */
-            text-shadow: 0 3px 12px rgba(212,175,55,0.35);
+
+        /* Hero Section */
+        .hero {
+            padding: 100px 40px;
+            text-align: center;
+            border-bottom: 2px solid var(--border-color);
         }
-        
-        .ticker {
-            background: rgba(20,20,20,0.7);
-            border: 1px solid #444;
-            border-radius: 8px;
+
+        .hero h2 {
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: 8rem;
+            text-transform: uppercase;
+            line-height: 0.9;
+            letter-spacing: -2px;
+            font-weight: 900;
+        }
+
+        .hero .subtitle {
+            margin-top: 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        /* Marquesina (Texto en movimiento) */
+        .marquee-container {
+            width: 100vw;
+            border-bottom: 2px solid var(--border-color);
             overflow: hidden;
-            backdrop-filter: blur(6px);
+            background-color: var(--text-color);
+            color: var(--bg-color);
+            padding: 15px 0;
         }
-        
-        .ticker-content {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.6rem;
-            color: #c9a96e;
-            letter-spacing: 0.12em;
-            text-shadow: 0 1px 6px #000;
-            animation: scroll-left 40s linear infinite;
+
+        .marquee-content {
+            display: flex;
+            width: fit-content;
+            animation: marquee 15s linear infinite;
+            font-size: 2rem;
+            font-weight: 900;
+            text-transform: uppercase;
         }
-        
-        @keyframes scroll-left {
+
+        .marquee-content span {
+            padding: 0 30px;
+        }
+
+        @keyframes marquee {
             0% { transform: translateX(0); }
             100% { transform: translateX(-50%); }
         }
-        
-        /* Filtros estilo vintage bold */
-        .filtros-container button {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.3rem;
-            letter-spacing: 0.15em;
-            padding: 10px 24px;
-            border: 2px solid #b8860b;
-            color: #d4af37;
-            background: transparent;
-            border-radius: 6px;
-            transition: all 0.3s ease;
+
+        /* Tienda de Beats */
+        .shop-section {
+            padding: 80px 40px;
+        }
+
+        .section-title {
+            font-size: 3rem;
             text-transform: uppercase;
+            margin-bottom: 40px;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 10px;
         }
-        
-        .filtros-container button:hover {
-            background: rgba(184,134,11,0.15);
-            box-shadow: 0 0 20px rgba(212,175,55,0.3);
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
         }
-        
-        .filtros-container button.active {
-            background: linear-gradient(145deg, #b8860b, #d4af37);
-            color: #111;
-            border-color: #d4af37;
-            box-shadow: 0 0 25px rgba(212,175,55,0.5);
-        }
-        
-        /* Cards estilo industrial vintage */
+
         .beat-card {
-            background: #111;
-            border: 1px solid #333;
-            border-radius: 8px;
-            overflow: hidden;
-            position: relative;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.7);
+            border: 2px solid var(--border-color);
+            background: #fff;
+            transition: transform 0.3s ease;
         }
-        
+
         .beat-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 16px 40px rgba(184,134,11,0.2);
+            transform: translateY(-5px);
+            box-shadow: 8px 8px 0px var(--text-color);
         }
-        
-        .beat-card::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to bottom, transparent 40%, rgba(0,0,0,0.75) 100%);
-            pointer-events: none;
-            z-index: 1;
-        }
-        
-        .beat-card h3 {
-            font-size: 2.8rem;
-            color: #d4af37;
-            text-shadow: 0 3px 10px #000;
-            margin-bottom: 8px;
-        }
-        
-        .beat-card .genre {
-            font-size: 1.3rem;
-            color: #a0a0a0;
-            letter-spacing: 0.05em;
-        }
-        
-        .beat-specs {
-            display: flex;
-            gap: 32px;
-            margin-top: 16px;
-        }
-        
-        .beat-specs div {
-            text-align: center;
-        }
-        
-        .beat-specs span.label {
-            font-size: 0.9rem;
-            color: #777;
-            display: block;
-            margin-bottom: 4px;
-        }
-        
-        .beat-specs span.value {
-            font-family: 'Cinzel', serif;
-            font-size: 2.2rem;
-            font-weight: 700;
-            color: #c9a96e;
-        }
-        
-        /* Botones contacto */
-        header a.btn-contact {
-            background: transparent;
-            border: 2px solid #b8860b;
-            color: #d4af37;
-            padding: 12px 20px;
-            border-radius: 6px;
+
+        .beat-cover {
+            height: 250px;
+            background-color: #ddd;
+            border-bottom: 2px solid var(--border-color);
             display: flex;
             align-items: center;
-            gap: 8px;
-            transition: all 0.3s;
+            justify-content: center;
+            font-size: 4rem;
+            color: var(--bg-color);
+        }
+
+        .beat-info {
+            padding: 20px;
+        }
+
+        .beat-info h3 {
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .tags {
+            font-size: 0.8rem;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .beat-action {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+        }
+
+        .btn {
+            background-color: var(--text-color);
+            color: var(--bg-color);
+            padding: 10px 20px;
+            text-transform: uppercase;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background-color: var(--accent-color);
+        }
+
+        /* Frase inspiracional */
+        .quote-section {
+            padding: 100px 40px;
+            text-align: center;
+            font-size: 4rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            border-top: 2px solid var(--border-color);
+            border-bottom: 2px solid var(--border-color);
+            line-height: 1.1;
+        }
+
+        .quote-section span {
+            color: var(--accent-color);
+        }
+
+        /* About Section */
+        .about-section {
+            display: flex;
+            padding: 80px 40px;
+            gap: 50px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text h2 {
+            font-size: 3rem;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        /* Footer */
+        footer {
+            padding: 60px 40px;
+            display: flex;
+            justify-content: space-between;
+            background-color: var(--text-color);
+            color: var(--bg-color);
+            text-transform: uppercase;
+        }
+
+        .footer-info h3 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .newsletter input {
+            padding: 10px;
+            border: none;
+            outline: none;
+        }
+
+        .newsletter button {
+            padding: 10px 20px;
+            background-color: var(--accent-color);
+            color: #fff;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
         }
         
-        header a.btn-contact:hover {
-            background: rgba(184,134,11,0.2);
-            box-shadow: 0 0 15px rgba(212,175,55,0.4);
-        }
-        
-        /* Mobile adjustments (mantengo los tuyos + extras) */
+        /* Responsive */
         @media (max-width: 768px) {
-            header {
-                padding: 20px !important;
-                flex-direction: column;
-                gap: 16px;
-            }
-            header h1 { font-size: 2.8rem !important; }
-            .ticker-content { font-size: 1.4rem !important; }
-            .beats-grid {
-                grid-template-columns: 1fr !important;
-                padding: 0 16px 80px !important;
-            }
-            .beat-card h3 { font-size: 2.4rem !important; }
-            .filtros-container button {
-                font-size: 1.1rem !important;
-                padding: 8px 16px !important;
-            }
+            .hero h1 { font-size: 4rem; }
+            .about-section { flex-direction: column; }
+            footer { flex-direction: column; gap: 40px; }
+            .nav-links { display: none; /* Menú hamburguesa iría aquí */ }
         }
     </style>
 </head>
 <body>
 
-    <div id="root"></div>
+    <header>
+        <div class="logo">Xang Fender</div>
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#beats">Beat Store</a>
+            <a href="#services">Servicios</a>
+            <a href="#contact">Contacto</a>
+        </div>
+        <div class="cart">🛒 Cart (0)</div>
+    </header>
 
-    <script type="text/babel">
-        const { useState } = React;
+    <section class="hero">
+        <h2>Welcome to</h2>
+        <h1>XANG FENDER<br>BEAT CLUB</h1>
+        <div class="subtitle">CHARACTER • RHYTHM • EXCLUSIVITY</div>
+    </section>
 
-        const WhatsApp = ({ size = 20 }) => (
-            <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
-                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
-            </svg>
-        );
+    <div class="marquee-container">
+        <div class="marquee-content">
+            <span>TRAP</span><span>•</span>
+            <span>BOOM BAP</span><span>•</span>
+            <span>R&B</span><span>•</span>
+            <span>DRILL</span><span>•</span>
+            <span>TRAP</span><span>•</span>
+            <span>BOOM BAP</span><span>•</span>
+            <span>R&B</span><span>•</span>
+            <span>DRILL</span><span>•</span>
+        </div>
+    </div>
 
-        const Instagram = ({ size = 20 }) => (
-            <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-            </svg>
-        );
-
-        const Gmail = ({ size = 20 }) => (
-            <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
-                <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/>
-            </svg>
-        );
-
-        function BeatStore() {
-            const [selectedGenre, setSelectedGenre] = useState('Todos');
-
-            const beats = [
-                {
-                    id: 1,
-                    title: "Midnight Vibes",
-                    bpm: 140,
-                    key: "Am",
-                    genre: "Trap",
-                    youtubeId: "dQw4w9WgXcQ"
-                },
-                {
-                    id: 2,
-                    title: "Golden Era",
-                    bpm: 90,
-                    key: "G",
-                    genre: "Reggaeton",
-                    youtubeId: "dQw4w9WgXcQ"
-                },
-                {
-                    id: 3,
-                    title: "Future Dreams",
-                    bpm: 128,
-                    key: "C#m",
-                    genre: "Afrobeat",
-                    youtubeId: "dQw4w9WgXcQ"
-                },
-                {
-                    id: 4,
-                    title: "Street Heat",
-                    bpm: 150,
-                    key: "Dm",
-                    genre: "Trap",
-                    youtubeId: "dQw4w9WgXcQ"
-                },
-                {
-                    id: 5,
-                    title: "Sunset Boulevard",
-                    bpm: 85,
-                    key: "F",
-                    genre: "Reggaeton",
-                    youtubeId: "dQw4w9WgXcQ"
-                },
-                {
-                    id: 6,
-                    title: "Neon Lights",
-                    bpm: 145,
-                    key: "Em",
-                    genre: "Afrobeat",
-                    youtubeId: "dQw4w9WgXcQ"
-                }
-            ];
-
-            const genres = ['Todos', ...new Set(beats.map(b => b.genre))];
-
-            const filteredBeats = selectedGenre === 'Todos' 
-                ? beats 
-                : beats.filter(b => b.genre === selectedGenre);
-
-            return (
-                <div style={{ minHeight: '100vh', background: '#0a0a0a' }}>
-                    
-                    {/* Header */}
-                    <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '20px' }}>
-                        <div className="overlay"></div>
-                        
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
-                            <img 
-                                src="xang-fender-logo.png" 
-                                alt="Xang Fender Logo"
-                                style={{ width: '60px', height: '60px', borderRadius: '50%', filter: 'drop-shadow(0 0 12px rgba(212,175,55,0.4))' }}
-                            />
-                            <h1>XANG FENDER BEATS</h1>
-                        </div>
-                        
-                        <div className="ticker" style={{ flex: '1 1 300px', margin: '0 24px', padding: '12px 0' }}>
-                            <div className="ticker-content" style={{ whiteSpace: 'nowrap' }}>
-                                🔥 ¿Buscás licencias o beats exclusivos? Contactame&nbsp;&nbsp;&nbsp;&nbsp;
-                                🔥 ¿Buscás licencias o beats exclusivos? Contactame&nbsp;&nbsp;&nbsp;&nbsp;
-                                🔥 ¿Buscás licencias o beats exclusivos? Contactame&nbsp;&nbsp;&nbsp;&nbsp;
-                            </div>
-                        </div>
-                        
-                        <div style={{ display: 'flex', gap: '16px' }}>
-                            <a href="https://wa.me/543512262879?text=Hola%20me%20interesan%20tus%20Beats" target="_blank" className="btn-contact">
-                                <WhatsApp /> WHATSAPP
-                            </a>
-                            <a href="https://instagram.com/xangfender" target="_blank" className="btn-contact">
-                                <Instagram /> INSTAGRAM
-                            </a>
-                            <a href="mailto:xangfender@gmail.com" className="btn-contact">
-                                <Gmail /> EMAIL
-                            </a>
-                        </div>
-                    </header>
-
-                    {/* Filtros */}
-                    <div className="filtros-container" style={{ padding: '40px 48px 32px', display: 'flex', gap: '16px', flexWrap: 'wrap', justifyContent: 'center' }}>
-                        {genres.map(genre => (
-                            <button
-                                key={genre}
-                                onClick={() => setSelectedGenre(genre)}
-                                className={`btn ${selectedGenre === genre ? 'active' : ''}`}
-                            >
-                                {genre}
-                            </button>
-                        ))}
-                    </div>
-
-                    {/* Grid de beats */}
-                    <div className="beats-grid" style={{ padding: '0 48px 100px', display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(360px, 1fr))', gap: '32px' }}>
-                        {filteredBeats.map(beat => (
-                            <div key={beat.id} className="beat-card">
-                                <div style={{ position: 'relative', paddingBottom: '56.25%', height: 0 }}>
-                                    <iframe
-                                        style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
-                                        src={`https://www.youtube.com/embed/${beat.youtubeId}`}
-                                        title={beat.title}
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                        allowFullScreen
-                                    />
-                                </div>
-                                
-                                <div style={{ padding: '24px', position: 'relative', zIndex: 2 }}>
-                                    <h3>{beat.title}</h3>
-                                    <p className="genre">{beat.genre}</p>
-                                    
-                                    <div className="beat-specs">
-                                        <div>
-                                            <span className="label">BPM</span>
-                                            <span className="value">{beat.bpm}</span>
-                                        </div>
-                                        <div>
-                                            <span className="label">KEY</span>
-                                            <span className="value">{beat.key}</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-
-                    {/* Footer */}
-                    <footer style={{
-                        background: '#000',
-                        borderTop: '1px solid #333',
-                        padding: '60px 48px 40px',
-                        textAlign: 'center',
-                        color: '#777'
-                    }}>
-                        <p style={{ fontSize: '1.1rem', letterSpacing: '0.05em' }}>
-                            © 2026 XANG FENDER BEATS
-                        </p>
-                        <p style={{ marginTop: '12px', fontSize: '0.95rem' }}>
-                            Beats con alma industrial • Hecho en Córdoba
-                        </p>
-                    </footer>
+    <section id="beats" class="shop-section">
+        <h2 class="section-title">Latest Beats</h2>
+        <div class="grid-container">
+            <div class="beat-card">
+                <div class="beat-cover" style="background: url('https://images.unsplash.com/photo-1598653222000-6b7b7a552625?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80') center/cover;">
+                    ▶
                 </div>
-            );
-        }
+                <div class="beat-info">
+                    <h3>Nightfall</h3>
+                    <div class="tags">140 BPM • Trap / Dark</div>
+                    <div class="beat-action">
+                        <span style="font-weight: bold;">$29.99</span>
+                        <button class="btn">+ Add</button>
+                    </div>
+                </div>
+            </div>
+            <div class="beat-card">
+                <div class="beat-cover" style="background: url('https://images.unsplash.com/photo-1514525253161-7a46d19cd819?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80') center/cover;">
+                    ▶
+                </div>
+                <div class="beat-info">
+                    <h3>Soul Vintage</h3>
+                    <div class="tags">88 BPM • Boom Bap / Soulful</div>
+                    <div class="beat-action">
+                        <span style="font-weight: bold;">$29.99</span>
+                        <button class="btn">+ Add</button>
+                    </div>
+                </div>
+            </div>
+            <div class="beat-card">
+                <div class="beat-cover" style="background: url('https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80') center/cover;">
+                    ▶
+                </div>
+                <div class="beat-info">
+                    <h3>Neon Lights</h3>
+                    <div class="tags">110 BPM • R&B / Synthwave</div>
+                    <div class="beat-action">
+                        <span style="font-weight: bold;">$29.99</span>
+                        <button class="btn">+ Add</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        ReactDOM.render(<BeatStore />, document.getElementById('root'));
-    </script>
+    <section class="quote-section">
+        Your sound isn't boring,<br>
+        it's just not <span>Xang</span>
+    </section>
+
+    <section id="about" class="about-section">
+        <div class="about-text">
+            <h2>About Xang</h2>
+            <p>Xang Fender no es el típico beatmaker de internet. Es un club, un lugar vivo en el que ritmos, samples e historias conviven.</p>
+            <p>Nacido de la pasión por el sonido analógico y las baterías contundentes, celebramos el estilo y la fuerza de la música. Aquí los beats no son moda: son la base de tu próximo éxito.</p>
+            <button class="btn">Conoce más</button>
+        </div>
+        <div class="about-image" style="flex: 1; background: url('https://images.unsplash.com/photo-1520166012956-add9ba0ee3f4?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80') center/cover; min-height: 400px; border: 2px solid #111;">
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="footer-info">
+            <h3>Thanks for<br>vibing with us!</h3>
+            <p style="margin-top: 20px;">hello@xangfender.com</p>
+            <p>IG: @xangfender</p>
+            <p style="margin-top: 20px; font-size: 0.8rem; color: #888;">BEATS DISPONIBLES 24/7</p>
+        </div>
+        <div class="newsletter">
+            <p style="margin-bottom: 10px;">ÚNETE A LA NEWSLETTER PARA BEATS EXCLUSIVOS</p>
+            <form>
+                <input type="email" placeholder="Tu Email">
+                <button type="button">Suscribirse</button>
+            </form>
+        </div>
+    </footer>
+
 </body>
 </html>
